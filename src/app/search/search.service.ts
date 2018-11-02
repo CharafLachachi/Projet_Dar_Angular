@@ -13,8 +13,8 @@ const httpOptions = {
 };
 @Injectable()
 export class SearchService   {
-  private   searchUrl :  string =  " api/search";
-  private   sharePubUrl :  string =  " api/sharePublication";
+  private   searchUrl :  string =  " https://rocky-ridge-86838.herokuapp.com/search";
+  private   sharePubUrl :  string =  " https://rocky-ridge-86838.herokuapp.com/sharePublication";
   private handleError: HandleError;
 
   constructor(private http: HttpClient, httpErrorHandler: HttpErrorHandler) { 
