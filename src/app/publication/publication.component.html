@@ -1,0 +1,87 @@
+<div class="text-center" *ngFor="let offer of resultsPubs">
+  <form (ngSubmit)="onSubmit(offer)" #form="ngForm" >
+
+    <div class="col-md-8  col-lg-8 col-sm-12 ml-auto mr-auto card-publication " style="margin-bottom: 10px;">
+      <p-card header="Advanced Card" subheader="Subheader" styleClass="ui-card-shadow" >
+        <p-header>
+          <img src="Card" src="assets/img/uriel-soberanes.jpg" class="card-img-top">
+        </p-header>
+        <div class="text-center">
+          <table class="table table-responsive text-center">
+            <tr class=" text-center">
+              <td rowspan="2">
+                <div id="weather">
+                  <nb-card size="xsmall">
+                    <nb-card-body>
+                      <div class="location">
+                        <span>{{offer.city}}</span>
+                      </div>
+                      <div class="date">
+                        <span>{{offer.chekInDate}}</span>
+                      </div>
+                      <div class="daily-forecast">
+                        <div class="info">
+                          <div class="temperature">
+                            <span>{{offer.weather.temp}}</span>
+                          </div>
+                          <div>
+                            <img width="50%" height="50%" src="http://openweathermap.org/img/w/{{offer.weather.icon}}.png"
+                              class="img-thumbnail">
+                          </div>
+                        </div>
+                      </div>
+                    </nb-card-body>
+                  </nb-card>
+                </div>
+              </td>
+              <td>
+                <i class="fa fa-usd"></i>
+                <p> <b>{{offer.roomPrice}}</b></p>
+              </td>
+              <td>
+                <i class="fa fa-map-marker"></i>
+                <p>{{offer.city}}</p>
+              </td>
+              <td>
+                <i class="fa fa-calendar"></i>
+                <p>{{offer.chekInDate}} - {{offer.checkOutDate}}</p>
+              </td>
+              <td *ngIf="offer.nbPers">
+                <i class="fa fa-users"></i>
+                <p>{{offer.nbPers}} </p>
+              </td>
+            </tr>
+            <tr>
+              <td></td>
+              <td *ngIf="offer.hotelContacts.tel">
+                <i class="fa fa-phone"></i>
+                <p>{{offer.hotelContacts.tel}} </p>
+              </td>
+              <td *ngIf="offer.hotelContacts.email">
+                <i class="fa fa-at"></i>
+                <p>{{offer.hotelContacts.email}} </p>
+              </td>
+
+              <td *ngIf="offer.hotelContacts.url">
+                <i class="fa fa-link"></i>
+                <p>{{offer.hotelContacts.url}}</p>
+              </td>
+
+            </tr>
+          </table>
+
+        </div>
+        <p-footer>
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Comments
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+          </mat-expansion-panel>
+        </p-footer>
+      </p-card>
+    </div>
+  </form>
+  <hr/>
+</div>
