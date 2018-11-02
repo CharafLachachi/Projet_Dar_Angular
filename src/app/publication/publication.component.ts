@@ -19,9 +19,9 @@ import { faCoffee } from '@fortawesome/free-solid-svg-icons';
 export class PublicationComponent implements OnInit {
 
   UserName: string;
-  private UserId : number;
+  UserId : number;
   user : User;
-  private resultsPubs : IPub[];
+  resultsPubs : IPub[];
   faCoffee = faCoffee;
   constructor(private publicationService : PublicationService,private httpClient: Http) { }
   ngOnInit() {

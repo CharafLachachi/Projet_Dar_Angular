@@ -7,6 +7,7 @@ import { AuthenticationService } from '../_services';
 
 @Component({templateUrl: 'login.component.html'})
 export class LoginComponent implements OnInit {
+    test = new Date();
     loginForm: FormGroup;
     loading = false;
     submitted = false;

@@ -35,6 +35,7 @@ export class SearchComponent implements OnInit {
   searchUrl : "api/DAR_PROJECT/search";
   d: Date;
   message :any;
+  submitted = false;
 
   profileForm = new FormGroup({
     roomPrice: new FormControl(''),
