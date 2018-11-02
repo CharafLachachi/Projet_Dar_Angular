@@ -9,7 +9,7 @@ export class AuthenticationService {
     constructor(private http: HttpClient) { }
     user : User ;
     login(email: string, password: string) {
-        return this.http.post<any>(`api/DAR_PROJECT/SignIn`, { email, password })
+        return this.http.post<any>(`api/SignIn`, { email, password })
             .pipe(map(token => {
                 
                 // login successful if there's a jwt token in the response
@@ -34,7 +34,7 @@ export class AuthenticationService {
     register(user : any){
         const userJson = JSON.stringify(user);
         console.log(userJson)
-        return this.http.post<any>(`api/DAR_PROJECT/SignUp`, user)
+        return this.http.post<any>(`api/SignUp`, user)
             .pipe(map(resp => {
                 
                

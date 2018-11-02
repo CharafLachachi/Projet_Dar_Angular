@@ -1,6 +1,6 @@
 {
     "/api": {
-      "target": "http://127.0.0.1:8080",
+      "target": "https://voyageons-ensemble.herokuapp.com/",
       "secure": false,
       "logLevel": "debug",
       "pathRewrite": {"^/api" : ""}

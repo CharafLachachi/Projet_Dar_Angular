@@ -32,7 +32,7 @@ export class SearchComponent implements OnInit {
   price : number;
   nbpers : number;
   offers : ISearchModel[];
-  searchUrl : "api/DAR_PROJECT/search";
+  searchUrl : "api/search";
   d: Date;
   message :any;
   submitted = false;

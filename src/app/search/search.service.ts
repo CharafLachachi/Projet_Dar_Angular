@@ -13,8 +13,8 @@ const httpOptions = {
 };
 @Injectable()
 export class SearchService   {
-  private   searchUrl :  string =  " api/DAR_PROJECT/search";
-  private   sharePubUrl :  string =  " api/DAR_PROJECT/sharePublication";
+  private   searchUrl :  string =  " api/search";
+  private   sharePubUrl :  string =  " api/sharePublication";
   private handleError: HandleError;
 
   constructor(private http: HttpClient, httpErrorHandler: HttpErrorHandler) { 

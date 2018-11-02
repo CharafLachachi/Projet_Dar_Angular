@@ -69,10 +69,10 @@ export function nbNoOpInterceptorFilter(req: HttpRequest<any>): boolean {
           },
           baseEndpoint: '/api/',
            login: {
-             endpoint: 'DAR_PROJECT/SignIn',
+             endpoint: '/SignIn',
            },
            register: {
-             endpoint: 'DAR_PROJECT/SignUp',
+             endpoint: '/SignUp',
              method: 'post',
            },
         }),

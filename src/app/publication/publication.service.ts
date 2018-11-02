@@ -16,7 +16,7 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class PublicationService {
-  private   dashboardUrl :  string =  "api/DAR_PROJECT/dashboard";
+  private   dashboardUrl :  string =  "api/dashboard";
   private handleError: HandleError;
   constructor(private http: HttpClient, httpErrorHandler: HttpErrorHandler) { 
     this.handleError = httpErrorHandler.createHandleError('PublicationService');
