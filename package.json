@@ -14,7 +14,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "install:clean": "rm -rf node_modules/ && rm -rf package-lock.json && npm install && npm start",
-    "postinstall": "ng build --prod"
+    "postinstall": "ng build --aot"
   },
   "dependencies": {
     "@angular/animations": "6.1.3",
