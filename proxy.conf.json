@@ -1,6 +1,6 @@
 {
     "/api": {
-      "target": "https://voyageons-ensemble.herokuapp.com/",
+      "target": "https://rocky-ridge-86838.herokuapp.com/",
       "secure": false,
       "logLevel": "debug",
       "pathRewrite": {"^/api" : ""}
