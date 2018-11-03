@@ -12,7 +12,7 @@
                     <form (ngSubmit)="search()" #form="ngForm" aria-labelledby="title">
                         <div class="form-row">
                             <div class="col">
-                                <div class="ui-g-12 ui-md-3 ">
+                                <div class="ui-g-12 ui-md-3 d-flex justify-content-left ">
                                     <p-calendar [showIcon]="true" [(ngModel)]="rangeDates" selectionMode="range"
                                         [readonlyInput]="true" [minDate]="minDate" [maxDate]="maxDate" [inline]="false"
                                         name="date-range"></p-calendar>

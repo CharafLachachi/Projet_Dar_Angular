@@ -69,6 +69,13 @@ export class NavbarComponent implements OnInit {
     //     }
     // }
 
+    isLogged(){
+        const user = localStorage.getItem("currentUser");
+        if(user){
+            return true;
+        }
+        return false;
+    }
     isLogOut() {
         var titlee = this.location.prepareExternalUrl(this.location.path());
         if( titlee === '/login' ) {
