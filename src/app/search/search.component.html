@@ -1,39 +1,172 @@
-<div class="row">
-    <nb-card class="inline-form-card col-sm-12 col-md-12 col-lg-12">
-        <nb-card-header>Recherche</nb-card-header>
-        <nb-card-body>
-            <form class="form-inline" (ngSubmit)="search()" #form="ngForm" aria-labelledby="title">
-                <input nbInput autocomplete="off" placeholder="Date Range" [ngModel]="date" [nbDatepicker]="formpicker"
-                    [(ngModel)]="date" name="date-range">
-                <nb-rangepicker format="yyyy-MM-dd" #formpicker [min]="minDate" [max]="maxDate" (rangeChange)="handleDateChange($event)"></nb-rangepicker>
-                <tag-input [ngModel]="user.items" id="cities" name="items" [maxItems]="1" [placeholder]="'Enter a city'"
-                    [onTextChangeDebounce]="500" [onlyFromAutocomplete]="true" (onAdd)="onAddItem($event)" (onRemove)="onRemoveItem($event)"
-                    [secondaryPlaceholder]="'Enter a city'">
-                    <tag-input-dropdown [autocompleteObservable]="requestAutocompleteItems" [minimumTextLength]="0">
-                        <ng-template let-item="item" let-index="index">
-                            {{ item.display }}
-                        </ng-template>
-                    </tag-input-dropdown>
-                </tag-input>
+<div class="wrapper">
+    <div class="page-header page-header-xs" data-parallax="true" style="background-image: url('./assets/img/fabio-mangione.jpg');">
+        <div class="filter"></div>
+        <div class="search-container" style="z-index: 9;">
+            <h1 class="presentation-title">Voyageons</h1>
+        </div>
+    </div>
+    <div class="section profile-content" style="margin-top: 2rem;">
+        <div class="container">
+            <div class="owner">
+                <div class="name">
+                    <form (ngSubmit)="search()" #form="ngForm" aria-labelledby="title">
+                        <div class="form-row">
+                            <div class="col">
+                                <div class="ui-g-12 ui-md-3 ">
+                                    <p-calendar [showIcon]="true" [(ngModel)]="rangeDates" selectionMode="range"
+                                        [readonlyInput]="true" [minDate]="minDate" [maxDate]="maxDate" [inline]="false"
+                                        name="date-range"></p-calendar>
+                                </div>
+                                <div class="col">
+                                    <div class="ui-g ui-fluid">
+                                    </div>
+                                    <div class="ui-g-12 ui-md-3">
+                                        <div class="ui-inputgroup">
+                                            <span class="ui-inputgroup-addon"><i class="fa fa-usd"></i></span>
+                                            <input [(ngModel)]="price" type="number" pInputText id="prix" min="0" name="prix"
+                                                placeholder="Prix Max / nuit">
+                                        </div>
+                                    </div>
 
-                <input nbInput [(ngModel)]="radius" type="number" min="0" id="radius" name="radius" placeholder="Radius Km"
-                    autofocus class="input">
-                <input nbInput [(ngModel)]="price" class="input" type="number" id="prix" min="0" name="prix"
-                    placeholder="Prix Max / nuit" autofocus>
-                <input nbInput [(ngModel)]="nbpers" class="input" type="number" id="nbrPr" min="0" name="nbrPr"
-                    placeholder="nb adults" autofocus>
+                                    <div class="ui-g-12 ui-md-3">
+                                        <div class="ui-inputgroup">
+                                            <span class="ui-inputgroup-addon">#</span>
+                                            <input [(ngModel)]="nbpers" pInputText type="number" id="nbrPr" min="0"
+                                                name="nbrPr" placeholder="nb adults">
+                                        </div>
+                                    </div>
 
+                                    <div class="ui-g-12 ui-md-3">
+                                        <div class="ui-inputgroup">
+                                            <span class="ui-inputgroup-addon"><i class="fa-location-arrow"></i></span>
+                                            <input pInputText [(ngModel)]="radius" type="number" min="0" id="radius"
+                                                name="radius" placeholder="Radius Km">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col">
+                                <tag-input [ngModel]="user.items" id="cities" name="items" [maxItems]="1" [placeholder]="'Enter a city'"
+                                    [onTextChangeDebounce]="500" [onlyFromAutocomplete]="true" (onAdd)="onAddItem($event)"
+                                    (onRemove)="onRemoveItem($event)" [secondaryPlaceholder]="'Enter a city'">
+                                    <tag-input-dropdown [autocompleteObservable]="requestAutocompleteItems"
+                                        [minimumTextLength]="0">
+                                        <ng-template let-item="item" let-index="index">
+                                            {{ item.display }}
+                                        </ng-template>
+                                    </tag-input-dropdown>
+                                </tag-input>
+                                <button type="submit" class="btn btn-outline-default btn-round" style="margin-top: 2rem;"><i
+                                        class="fa fa-search"></i>
+                                    Search</button>
 
-                <button nbButton status="success" [class.btn-pulse]="submitted">
-                    <i class="nb-search"></i> Let's go
-                </button>
+                            </div>
+                        </div>
 
-            </form>
-        </nb-card-body>
-    </nb-card>
+                    </form>
+
+                </div>
+            </div>
+            <div class="nav-tabs-navigation">
+                <div class="nav-tabs-wrapper content-center">
+                    <ngb-tabset [justify]="'center'">
+                        <ngb-tab title="Nos Voyages Trouvés">
+                            <ng-template ngbTabContent>
+                                <div class="row text-center d-flex justify-content-center" *ngFor="let offer of offers">
+                                    <div class="row following text-center " id="follows">
+                                        <form class="form-inline" (ngSubmit)="onSubmit(offer)" #form="ngForm"
+                                            aria-labelledby="title">
+                                            <div style="margin-bottom: 10px;">
+                                                <p-card header="Advanced Card" subheader="Subheader" styleClass="ui-card-shadow">
+                                                    <p-header>
+                                                        <img src="Card" src="assets/img/uriel-soberanes.jpg" style="width: 100%"  class="img-no-padding img-responsive">
+                                                    </p-header>
+                                                    <div class="text-center">
+                                                        <table class="table table-responsive text-center">
+                                                            <tr class=" text-center">
+                                                                <td rowspan="2">
+                                                                    <div id="weather">
+                                                                        <nb-card size="xsmall">
+                                                                            <nb-card-body>
+                                                                                <div class="location">
+                                                                                    <span>{{offer.city}}</span>
+                                                                                </div>
+                                                                                <div class="date">
+                                                                                    <span>{{offer.chekInDate}}</span>
+                                                                                </div>
+                                                                                <div class="daily-forecast">
+                                                                                    <div class="info">
+                                                                                        <div class="temperature">
+                                                                                            <span>{{offer.weather.temp}}</span>
+                                                                                        </div>
+                                                                                        <div>
+                                                                                            <img width="50%" height="50%"
+                                                                                                src="http://openweathermap.org/img/w/{{offer.weather.icon}}.png"
+                                                                                                class="img-thumbnail">
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </nb-card-body>
+                                                                        </nb-card>
+                                                                    </div>
+                                                                </td>
+                                                                <td>
+                                                                    <i class="fa fa-usd"></i>
+                                                                    <p> <b>{{offer.roomPrice}}</b></p>
+                                                                </td>
+                                                                <td>
+                                                                    <i class="fa fa-map-marker"></i>
+                                                                    <p>{{offer.city}}</p>
+                                                                </td>
+                                                                <td>
+                                                                    <i class="fa fa-calendar"></i>
+                                                                    <p>{{offer.chekInDate}} - {{offer.checkOutDate}}</p>
+                                                                </td>
+                                                                <td *ngIf="offer.nbPers">
+                                                                    <i class="fa fa-users"></i>
+                                                                    <p>{{offer.nbPers}} </p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td></td>
+                                                                <td *ngIf="offer.hotelContacts.tel">
+                                                                    <i class="fa fa-phone"></i>
+                                                                    <p>{{offer.hotelContacts.tel}} </p>
+                                                                </td>
+                                                                <td *ngIf="offer.hotelContacts.email">
+                                                                    <i class="fa fa-at"></i>
+                                                                    <p>{{offer.hotelContacts.email}} </p>
+                                                                </td>
+
+                                                                <td *ngIf="offer.hotelContacts.url">
+                                                                    <i class="fa fa-link"></i>
+                                                                    <p>{{offer.hotelContacts.url}}</p>
+                                                                </td>
+                                                            </tr>
+                                                        </table>
+                                                    </div>
+                                                    <p-footer>
+                                                            <button type="submit" [class.btn-pulse]="submitted" class="btn btn-danger btn-round">
+                                                                    <i class="fa fa-share"></i> Share Your Travel
+                                                                </button>
+                                                    </p-footer>
+                                                </p-card>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </ng-template>
+                        </ngb-tab>
+                    </ngb-tabset>
+                </div>
+            </div>
+
+        </div>
+    </div>
 </div>
-
-<div class="row text-center" *ngFor="let offer of offers">
+<!-- <div class="row text-center" *ngFor="let offer of offers">
 <form class="form-inline" (ngSubmit)="onSubmit(offer)" #form="ngForm" aria-labelledby="title">
     <nb-card class=" col-sm-12 col-md-12 col-lg-12 text-center">
         <nb-card-header> <i class="fas fa-hotel"></i> {{offer.hotelName}}</nb-card-header>
@@ -103,4 +236,4 @@
             </button></nb-card-footer>
     </nb-card>
 </form>
-</div>
+</div> -->

@@ -1,5 +1,5 @@
-<div class="text-center" *ngFor="let offer of resultsPubs">
-  <form (ngSubmit)="onSubmit(offer)" #form="ngForm" >
+<div class="text-center"  *ngFor="let offer of resultsPubs">
+  <form (ngSubmit)="onSubmit(offer)" *ngIf="offer" #form="ngForm" >
 
     <div class="col-md-8  col-lg-8 col-sm-12 ml-auto mr-auto card-publication " style="margin-bottom: 10px;">
       <p-card header="Advanced Card" subheader="Subheader" styleClass="ui-card-shadow" >

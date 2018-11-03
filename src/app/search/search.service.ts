@@ -13,8 +13,8 @@ const httpOptions = {
 };
 @Injectable()
 export class SearchService   {
-  private   searchUrl :  string =  " api/search";
-  private   sharePubUrl :  string =  " api/sharePublication";
+  private   searchUrl :  string =  "https://rocky-ridge-86838.herokuapp.com/search";
+  private   sharePubUrl :  string =  "https://rocky-ridge-86838.herokuapp.com/sharePublication";
   private handleError: HandleError;
 
   constructor(private http: HttpClient, httpErrorHandler: HttpErrorHandler) { 
@@ -29,7 +29,6 @@ export class SearchService   {
   }
 
   sharePublication(pub : ISearchModel) {
-    pub.idUser  = JSON.parse(localStorage.getItem('userId') || 'false');
     return this.http.post(this.sharePubUrl,pub,httpOptions)
      .pipe(
       catchError(this.handleError('sharePublication', []))

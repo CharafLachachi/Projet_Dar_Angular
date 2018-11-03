@@ -61,7 +61,6 @@ export class PublicationComponent implements OnInit {
     console.log('scope is ');
     this.publicationService.postPub({userid : this.UserId}).subscribe(res => {
       this.resultsPubs = res; 
-      console.log(this.resultsPubs[0].roomPrice);
     },
     error =>{
     console.log("Error", error);

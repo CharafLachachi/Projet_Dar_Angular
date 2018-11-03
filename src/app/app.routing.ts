@@ -19,11 +19,11 @@ const routes: Routes =[
   { path: '', component: HomeComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent },
   { path: 'signup',         component: SignupComponent },
-  { path: 'search',         component: SearchComponent , canActivate: [AuthGuard]},
-    // { 
-    //   path: 'home', 
-    //   component: HomeComponent },
-    // { path: 'user-profile',   component: ProfileComponent },
+  { path: 'search',     component: SearchComponent , canActivate: [AuthGuard]},
+     { 
+     path: 'home', 
+     canActivate: [AuthGuard], component: HomeComponent },
+     { path: 'user-profile',   component: ProfileComponent },
     // { path: 'signup',         component: SignupComponent },
     // { path: 'landing',       component: LandingComponent },
     // { path: 'nucleoicons',     component: NucleoiconsComponent },

@@ -5,6 +5,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app.routing';
 import {  HttpRequest } from '@angular/common/http';
+import { NbCardModule } from "@nebular/theme";
 
 import { AppComponent } from './app.component';
 import { SignupComponent } from './signup/signup.component';
@@ -30,6 +31,8 @@ import { HomeModule } from './home/home.module';
 import { HttpModule } from '@angular/http';
 import { SearchComponent } from '../app/search/search.component';
 import { NbDatepickerModule } from "@nebular/theme/components/datepicker/datepicker.module";
+import {CalendarModule} from 'primeng/calendar';
+import {CardModule} from 'primeng/card';
 
 export function nbNoOpInterceptorFilter(req: HttpRequest<any>): boolean {
   return true;
@@ -49,8 +52,8 @@ export function nbNoOpInterceptorFilter(req: HttpRequest<any>): boolean {
     BrowserAnimationsModule,
     TagInputModule,
     BrowserModule,
-    NgbModule.forRoot(),
     FormsModule,
+    NgbModule.forRoot(),
     RouterModule,
     AppRoutingModule,
     HomeModule,
@@ -80,6 +83,9 @@ export function nbNoOpInterceptorFilter(req: HttpRequest<any>): boolean {
       forms: {},
     }), 
     ThemeModule.forRoot(),
+    CalendarModule,
+    CardModule,
+    NbCardModule
 
   ],
   providers: [
