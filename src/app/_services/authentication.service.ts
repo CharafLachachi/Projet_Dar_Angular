@@ -31,23 +31,23 @@ export class AuthenticationService {
         localStorage.removeItem('currentUser');
     }
 
-    // register(user : any){
-    //     const userJson = JSON.stringify(user);
-    //     console.log(userJson)
-    //     return this.http.post<any>(`https://rocky-ridge-86838.herokuapp.com/SignUp`, user)
-    //         .pipe(map(resp => {
-    //             return resp;
-    //         }));
-    // }
-
-    register(user: any) {
+    register(user : any){
         const userJson = JSON.stringify(user);
         console.log(userJson)
-        return this.http.get<any>(`https://rocky-ridge-86838.herokuapp.com/GetWeatherByCityName`, {
-            params: new HttpParams().set('city_name', 'brest')
-        })
+        return this.http.post<any>(`https://rocky-ridge-86838.herokuapp.com/SignUp`, user)
             .pipe(map(resp => {
                 return resp;
             }));
     }
+
+    // register(user: any) {
+    //     const userJson = JSON.stringify(user);
+    //     console.log(userJson)
+    //     return this.http.get<any>(`https://rocky-ridge-86838.herokuapp.com/GetWeatherByCityName`, {
+    //         params: new HttpParams().set('city_name', 'brest')
+    //     })
+    //         .pipe(map(resp => {
+    //             return resp;
+    //         }));
+    // }
 }
