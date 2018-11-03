@@ -34,6 +34,7 @@ import { NbDatepickerModule } from "@nebular/theme/components/datepicker/datepic
 import {CalendarModule} from 'primeng/calendar';
 import {CardModule} from 'primeng/card';
 
+import { AvatarModule } from 'ngx-avatar';
 export function nbNoOpInterceptorFilter(req: HttpRequest<any>): boolean {
   return true;
 }
@@ -85,7 +86,8 @@ export function nbNoOpInterceptorFilter(req: HttpRequest<any>): boolean {
     ThemeModule.forRoot(),
     CalendarModule,
     CardModule,
-    NbCardModule
+    NbCardModule,
+    AvatarModule
 
   ],
   providers: [

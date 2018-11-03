@@ -8,11 +8,13 @@ export class InitialsService {
   constructor(private http: HttpClient) { }
 
   getAvatarInitials(fn: any,ln: any) {
+      console.log(fn);
     return this.http.get<any>(`https://ui-avatars.com/api/`, {
         params: new HttpParams().set('rounded', 'true')
         .set("name",fn+"+"+ln)
     })
         .pipe(map(resp => {
+            console.log(resp);
             return resp;
         }));
 }

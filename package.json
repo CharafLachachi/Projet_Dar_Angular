@@ -48,6 +48,7 @@
     "jw-bootstrap-switch-ng2": "2.0.1",
     "nebular-icons": "^1.1.0",
     "ng2-nouislider": "1.7.12",
+    "ngx-avatar": "^3.2.0",
     "ngx-chips": "^1.9.8",
     "nouislider": "9.2.0",
     "path": "^0.12.7",

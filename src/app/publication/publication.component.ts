@@ -10,6 +10,7 @@ import { HttpHandler } from '@angular/common/http';
 import { HttpErrorHandler } from "../http-error-handler.service";
 
 import { faCoffee } from '@fortawesome/free-solid-svg-icons';
+import { InitialsService } from 'app/_services/initials.service';
 @Component({
   selector: 'ngx-publication',
   templateUrl: './publication.component.html',
@@ -23,7 +24,7 @@ export class PublicationComponent implements OnInit {
   user : User;
   resultsPubs : IPub[];
   faCoffee = faCoffee;
-  constructor(private publicationService : PublicationService,private httpClient: Http) { }
+  constructor(private publicationService : PublicationService,private httpClient: Http, private initialService : InitialsService) { }
   ngOnInit() {
     // const decodedJson = JSON.parse(localStorage.getItem("auth_app_token"));
     // const tokenValue = decodedJson.value;

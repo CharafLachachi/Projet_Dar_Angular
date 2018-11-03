@@ -1,6 +1,8 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
 import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { AuthenticationService } from '../../_services';
+import { InitialsService } from 'app/_services/initials.service';
+import { User } from 'app/_models';
 
 @Component({
     selector: 'app-navbar',
@@ -10,15 +12,18 @@ import { AuthenticationService } from '../../_services';
 export class NavbarComponent implements OnInit {
     private toggleButton: any;
     private sidebarVisible: boolean;
-
+    private imageToShow :any;
+    private user: User;
     constructor(public location: Location, private element : ElementRef,
-        private authenticationService: AuthenticationService) {
+        private authenticationService: AuthenticationService,
+        private initialService: InitialsService) {
         this.sidebarVisible = false;
     }
 
     ngOnInit() {
         const navbar: HTMLElement = this.element.nativeElement;
         this.toggleButton = navbar.getElementsByClassName('navbar-toggler')[0];
+        this.register();
     }
     sidebarOpen() {
         const toggleButton = this.toggleButton;
@@ -85,5 +90,15 @@ export class NavbarComponent implements OnInit {
         else {
             return false;
         }
+    }
+
+     register() {
+        this.user = JSON.parse(localStorage.getItem("currentUser"));
+        this.initialService.getAvatarInitials(this.user.firstname,this.user.lastname).
+        subscribe(
+          res => {
+              console.log(res)
+            this.imageToShow = res;
+          });
     }
 }
