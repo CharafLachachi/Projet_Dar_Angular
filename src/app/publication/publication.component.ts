@@ -24,6 +24,7 @@ export class PublicationComponent implements OnInit {
   user : User;
   resultsPubs : IPub[];
   faCoffee = faCoffee;
+  loadCommentAllowed : boolean;
   constructor(private publicationService : PublicationService,private httpClient: Http, private initialService : InitialsService) { }
   ngOnInit() {
     // const decodedJson = JSON.parse(localStorage.getItem("auth_app_token"));
@@ -38,6 +39,7 @@ export class PublicationComponent implements OnInit {
     this.UserId = this.user.id;
     //this.displayPublications();
     this.display();
+    this.loadCommentAllowed = false;
   }
 
   secondes: number;
@@ -67,6 +69,10 @@ export class PublicationComponent implements OnInit {
     console.log("Error", error);
     });
     
+  }
+
+  public loadComment(){
+    this.loadCommentAllowed = !this.loadCommentAllowed;
   }
   
 }

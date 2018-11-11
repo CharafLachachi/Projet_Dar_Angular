@@ -49,11 +49,24 @@
                     <a href="https://github.com/creativetimofficial/paper-kit-2-angular/issues?ref=pk2-free-local" target="_blank" class="nav-link">Have an issue</a>
                 </li> -->
                 <li class="nav-item" *ngIf="isLogged()">
+                    <a [routerLink]="['/search']" class="nav-link"><i class="nc-icon nc-zoom-split"></i>Trouver votre
+                        voyage !</a>
+                </li>
+                <li class="nav-item" *ngIf="isLogged()">
                     <a [routerLink]="['/login']" class="nav-link"><i class="nc-icon nc-layout-11"></i>Logout</a>
                 </li>
-                <li class="nav-item" *ngIf="isLogged()">    
-                        <!-- <img  [src]="imageToShow" alt="Avatar" class="avatar"> -->
-                        <ngx-avatar name="John Doe" [round]="true"></ngx-avatar>
+                <li class="nav-item" *ngIf="isLogged()">
+                    <!-- <img  [src]="imageToShow" alt="Avatar" class="avatar"> -->
+                    <a [routerLink]="['/profile']" #tag>
+                        <ngx-avatar name="{{user.firstname}} {{user.lastname}}" [round]="true" bgColor="#F5593D"
+                            fgColor="#fff">
+
+                        </ngx-avatar>
+                    </a>
+
+                </li>
+
+                <li>
 
                 </li>
             </ul>

@@ -8,6 +8,8 @@ import { NavbarComponent } from './shared/navbar/navbar.component';
 
 
 
+
+
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
@@ -55,7 +57,7 @@ export class AppComponent implements OnInit {
     removeFooter() {
         var titlee = this.location.prepareExternalUrl(this.location.path());
         titlee = titlee.slice( 1 );
-        if(titlee === 'signup' || titlee === 'nucleoicons' || titlee === 'auth/login'){
+        if(titlee === 'signup' || titlee === 'nucleoicons' || titlee === 'login'){
             return false;
         }
         else {

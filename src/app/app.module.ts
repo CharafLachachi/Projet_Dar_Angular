@@ -14,9 +14,8 @@ import { ProfileComponent } from './profile/profile.component';
 import { HomeComponent } from './home/home.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { FooterComponent } from './shared/footer/footer.component';
-import { ThemeModule } from './@theme/theme.module';
+import { ThemeModule, } from './@theme/theme.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-
 import { NbAuthModule, NbPasswordAuthStrategy, NbAuthJWTToken } from '@nebular/auth';
 import { ReactiveFormsModule }    from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -33,8 +32,16 @@ import { SearchComponent } from '../app/search/search.component';
 import { NbDatepickerModule } from "@nebular/theme/components/datepicker/datepicker.module";
 import {CalendarModule} from 'primeng/calendar';
 import {CardModule} from 'primeng/card';
+import { MatButtonModule, MatCheckboxModule, MatInputModule, MatButtonToggleModule, MatIconModule } from '@angular/material';
 
 import { AvatarModule } from 'ngx-avatar';
+import { ShowProfileComponent } from './show-profile/show-profile.component';
+import { ChatComponent } from './chat/chat.component';
+import {ScrollPanelModule} from 'primeng/scrollpanel';
+import {DialogModule} from 'primeng/dialog';
+import { NbChatModule } from "@nebular/theme/components/chat/chat.module";
+import {SelectButtonModule} from 'primeng/selectbutton';
+
 export function nbNoOpInterceptorFilter(req: HttpRequest<any>): boolean {
   return true;
 }
@@ -47,8 +54,10 @@ export function nbNoOpInterceptorFilter(req: HttpRequest<any>): boolean {
     NavbarComponent,
     FooterComponent,
     LoginComponent,
-    SearchComponent
-  ],
+    SearchComponent,
+    ShowProfileComponent,
+    ChatComponent
+    ],
   imports: [
     BrowserAnimationsModule,
     TagInputModule,
@@ -87,8 +96,16 @@ export function nbNoOpInterceptorFilter(req: HttpRequest<any>): boolean {
     CalendarModule,
     CardModule,
     NbCardModule,
-    AvatarModule
-
+    AvatarModule,
+    MatButtonModule,
+    MatButtonToggleModule,
+    MatIconModule,
+    MatInputModule,
+    MatCheckboxModule,
+    DialogModule,
+    NbChatModule.forRoot(),
+    ScrollPanelModule,
+    SelectButtonModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
@@ -96,7 +113,7 @@ export function nbNoOpInterceptorFilter(req: HttpRequest<any>): boolean {
         { provide: LocationStrategy, useClass: HashLocationStrategy },
         // provider used to create fake backend
         fakeBackendProvider
-  ],
+        ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

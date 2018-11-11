@@ -1,5 +1,6 @@
 import { IAddress } from "./IAddress";
 export interface IPub {
+    pub_id?:number;
     roomPrice?: number;
     nbPers?: number;
     radius?: number;

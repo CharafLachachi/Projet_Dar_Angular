@@ -14,5 +14,6 @@ export interface ISearchModel {
                  address?: IAddress;
                  hotelContacts?: IContact;
                  idUser? : any;
+                 currency? : string;
                  }
   

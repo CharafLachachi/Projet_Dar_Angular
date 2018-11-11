@@ -2,7 +2,8 @@ import { IAddress } from "./IAddress";
 
 export class Pub {
 
-    constructor(public id?: number,
+    constructor(
+                public pub_id?: number,
                 public roomPrice?: number,
                 public nbPers?: number,
                 public radius?: number,

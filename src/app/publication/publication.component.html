@@ -1,10 +1,10 @@
-<div class="text-center"  *ngFor="let offer of resultsPubs">
-  <form (ngSubmit)="onSubmit(offer)" *ngIf="offer" #form="ngForm" >
+<div class="text-center d-flex justify-content-center" *ngFor="let offer of resultsPubs">
+  <form (ngSubmit)="onSubmit(offer)" *ngIf="offer" #form="ngForm">
 
-    <div class="col-md-8  col-lg-8 col-sm-12 ml-auto mr-auto card-publication " style="margin-bottom: 10px;">
-      <p-card header="Advanced Card" subheader="Subheader" styleClass="ui-card-shadow" >
+    <div class=" " style="margin-bottom: 10px;">
+      <p-card header="Advanced Card" subheader="Subheader" styleClass="ui-card-shadow">
         <p-header>
-          <img src="Card" src="assets/img/uriel-soberanes.jpg" class="card-img-top">
+          <img src="Card" src="{{offer.picture}}" class="card-img-top">
         </p-header>
         <div class="text-center">
           <table class="table table-responsive text-center">
@@ -25,7 +25,7 @@
                             <span>{{offer.weather.temp}}</span>
                           </div>
                           <div>
-                            <img width="50%" height="50%" src="http://openweathermap.org/img/w/{{offer.weather.icon}}.png"
+                            <img width="100%" height="100%" src="https://openweathermap.org/img/w/{{offer.weather.icon}}.png"
                               class="img-thumbnail">
                           </div>
                         </div>
@@ -72,16 +72,17 @@
 
         </div>
         <p-footer>
-          <mat-expansion-panel>
+          <mat-expansion-panel (opened)="loadComment()"  (closed)="loadComment()">
             <mat-expansion-panel-header>
               <mat-panel-title>
                 Comments
               </mat-panel-title>
             </mat-expansion-panel-header>
+            <app-comment *ngIf="loadCommentAllowed" pub_id="{{offer.pub_id}}"></app-comment>
           </mat-expansion-panel>
         </p-footer>
       </p-card>
     </div>
   </form>
-  <hr/>
+  <hr />
 </div>

@@ -1,0 +1,36 @@
+<div class="container">
+  <div class="header">
+ 
+      <!-- <input matInput placeholder="Your name here" type="text" [(ngModel)]="sender" [ngModelOptions]="{updateOn: 'blur'}"> -->
+      <p-scrollPanel [style]="{width: '100%', height: '70px'}">
+          <p-selectButton [options]="types" [(ngModel)]="selectedType"></p-selectButton>
+
+      </p-scrollPanel>
+  </div>
+  <div *ngIf="!!sender" #viewer class="body">
+    <div class="viewer">
+      <div class="message" *ngFor="let msg of serverMessages" [ngClass]="{'bold': msg.isBroadcast, 'others': !isMine(msg)}">
+        <div class="badge" [style.backgroundColor]="getSenderColor(msg.sender)">{{ getSenderInitials(msg.sender) }}</div>
+        <div class="content" [ngClass]="{'bold': msg.isBroadcast, 'others': !isMine(msg)}">
+          <i *ngIf="msg.isBroadcast" class="material-icons">speaker_phone</i>
+          <span>{{ msg.content }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="!!sender" class="footer">
+    <form (submit)="send()">
+        <div class="input-group" [ngClass]="{'input-group-focus':focus===true}">
+            <input type="text" class="form-control" placeholder="Write a message" aria-describedby="basic-addon1" (focus)="focus=true" (blur)="focus=false" name="clientMessage"
+            [(ngModel)]="clientMessage" >
+        </div>
+      <button *ngIf="!!selectedType" type="submit" class="btn btn-danger btn-just-icon">
+        <i class="fa fa-send"></i>
+      </button>
+      <button  (click)="toggleIsBroadcast()" class="btn btn-danger btn-just-icon" type="button" [ngClass]="{'disabled': !isBroadcast}">
+        <i class="fa fa-bullhorn"></i>
+      </button>
+    </form>
+  </div>
+  <p>{{selectedType}}</p>
+</div>

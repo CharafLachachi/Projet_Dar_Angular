@@ -109,7 +109,9 @@
 .subscribe-form {
     padding-top: 20px;
 }
-
+.wrapper{
+    min-width: 700px;
+}
 .page-header .card-register .title {
     margin-bottom: 10px;
 }

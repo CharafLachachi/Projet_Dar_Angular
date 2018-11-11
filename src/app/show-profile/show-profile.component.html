@@ -1,0 +1,273 @@
+<div class="wrapper">
+    <div class="page-header page-header-xs" data-parallax="true" style="background-image: url('./assets/img/fabio-mangione.jpg');">
+        <div class="filter"></div>
+    </div>
+    <div class="section profile-content">
+        <div class="container">
+            <div class="owner">
+                <div class="avatar">
+                    <img id="profile_img" alt="Circle Image" class="img-circle img-no-padding img-responsive" [src]="sanitize(default_url)">
+                </div>
+                <div class="name">
+                    <h4 class="title"> {{user.firstname}} {{user.lastname}}<br /></h4>
+                    <h6 class="description">{{user.email}}</h6>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 ml-auto mr-auto text-center">
+                    <!-- <p>An artist of considerable range, Jane Faker — the name taken by Melbourne-raised, Brooklyn-based Nick Murphy — writes, performs and records all of his own music, giving it a warm, intimate feel with a solid groove structure. </p>
+                    <br /> -->
+                    <button class="btn btn-outline-default btn-round" (click)="showDialog()"><i class="fa fa-cog"></i>
+                        Edit profile</button>
+                </div>
+            </div>
+            <br />
+            <div class="nav-tabs-navigation">
+                <div class="nav-tabs-wrapper content-center">
+                    <ngb-tabset [justify]="'center'">
+                        <ngb-tab title="Own Publication">
+                            <ng-template ngbTabContent>
+                                <div class="row text-center d-flex justify-content-center" *ngFor="let offer of OwnPublications">
+                                    <div class="row following text-center " id="follows">
+                                        <form class="form-inline" (ngSubmit)="onSubmit(offer)" #form="ngForm"
+                                            aria-labelledby="title">
+                                            <div style="margin-bottom: 10px;">
+                                                <p-card header="Advanced Card" subheader="Subheader" styleClass="ui-card-shadow">
+                                                    <p-header>
+                                                        <img src="Card" src="assets/img/uriel-soberanes.jpg" style="width: 100%"
+                                                            class="img-no-padding img-responsive">
+                                                    </p-header>
+                                                    <div class="text-center">
+                                                        <table class="table table-responsive text-center">
+                                                            <tr class=" text-center">
+                                                                <td rowspan="2">
+                                                                    <div id="weather">
+                                                                        <nb-card size="xsmall">
+                                                                            <nb-card-body>
+                                                                                <div class="location">
+                                                                                    <span>{{offer.city}}</span>
+                                                                                </div>
+                                                                                <div class="date">
+                                                                                    <span>{{offer.chekInDate}}</span>
+                                                                                </div>
+                                                                                <div class="daily-forecast">
+                                                                                    <div class="info">
+                                                                                        <div class="temperature">
+                                                                                            <span>{{offer.weather.temp}}</span>
+                                                                                        </div>
+                                                                                        <div>
+                                                                                            <img width="50%" height="50%"
+                                                                                                src="https://openweathermap.org/img/w/{{offer.weather.icon}}.png"
+                                                                                                class="img-thumbnail">
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </nb-card-body>
+                                                                        </nb-card>
+                                                                    </div>
+                                                                </td>
+                                                                <td>
+                                                                    <i class="fa fa-usd"></i>
+                                                                    <p> <b>{{offer.roomPrice}}</b></p>
+                                                                </td>
+                                                                <td>
+                                                                    <i class="fa fa-map-marker"></i>
+                                                                    <p>{{offer.city}}</p>
+                                                                </td>
+                                                                <td>
+                                                                    <i class="fa fa-calendar"></i>
+                                                                    <p>{{offer.chekInDate}} - {{offer.checkOutDate}}</p>
+                                                                </td>
+                                                                <td *ngIf="offer.nbPers">
+                                                                    <i class="fa fa-users"></i>
+                                                                    <p>{{offer.nbPers}} </p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td></td>
+                                                                <td *ngIf="offer.hotelContacts.tel">
+                                                                    <i class="fa fa-phone"></i>
+                                                                    <p>{{offer.hotelContacts.tel}} </p>
+                                                                </td>
+                                                                <td *ngIf="offer.hotelContacts.email">
+                                                                    <i class="fa fa-at"></i>
+                                                                    <p>{{offer.hotelContacts.email}} </p>
+                                                                </td>
+
+                                                                <td *ngIf="offer.hotelContacts.url">
+                                                                    <i class="fa fa-link"></i>
+                                                                    <p>{{offer.hotelContacts.url}}</p>
+                                                                </td>
+                                                            </tr>
+                                                        </table>
+                                                    </div>
+                                                    <p-footer>
+                                                        <button (click)="delete_publication(offer)" [class.btn-pulse]="submitted"
+                                                            class="btn btn-danger btn-round">
+                                                            <i class="fa fa-trash-o"></i>
+                                                        </button>
+                                                    </p-footer>
+                                                </p-card>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </ng-template>
+                        </ngb-tab>
+                        <ngb-tab title="Posts that you are interested in">
+                            <ng-template ngbTabContent>
+                                <div class="row text-center d-flex justify-content-center" *ngFor="let offer of PublicationsOfInterest">
+                                    <div class="row following text-center " id="follows">
+                                        <form class="form-inline" (ngSubmit)="onSubmit(offer)" #form="ngForm"
+                                            aria-labelledby="title">
+                                            <div style="margin-bottom: 10px;">
+                                                <p-card header="Advanced Card" subheader="Subheader" styleClass="ui-card-shadow">
+                                                    <p-header>
+                                                        <img src="Card" src="assets/img/uriel-soberanes.jpg" style="width: 100%"
+                                                            class="img-no-padding img-responsive">
+                                                    </p-header>
+                                                    <div class="text-center">
+                                                        <table class="table table-responsive text-center">
+                                                            <tr class=" text-center">
+                                                                <td rowspan="2">
+                                                                    <div id="weather">
+                                                                        <nb-card size="xsmall">
+                                                                            <nb-card-body>
+                                                                                <div class="location">
+                                                                                    <span>{{offer.city}}</span>
+                                                                                </div>
+                                                                                <div class="date">
+                                                                                    <span>{{offer.chekInDate}}</span>
+                                                                                </div>
+                                                                                <div class="daily-forecast">
+                                                                                    <div class="info">
+                                                                                        <div class="temperature">
+                                                                                            <span>{{offer.weather.temp}}</span>
+                                                                                        </div>
+                                                                                        <div>
+                                                                                            <img width="50%" height="50%"
+                                                                                                src="https://openweathermap.org/img/w/{{offer.weather.icon}}.png"
+                                                                                                class="img-thumbnail">
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </nb-card-body>
+                                                                        </nb-card>
+                                                                    </div>
+                                                                </td>
+                                                                <td>
+                                                                    <i class="fa fa-usd"></i>
+                                                                    <p> <b>{{offer.roomPrice}}</b></p>
+                                                                </td>
+                                                                <td>
+                                                                    <i class="fa fa-map-marker"></i>
+                                                                    <p>{{offer.city}}</p>
+                                                                </td>
+                                                                <td>
+                                                                    <i class="fa fa-calendar"></i>
+                                                                    <p>{{offer.chekInDate}} - {{offer.checkOutDate}}</p>
+                                                                </td>
+                                                                <td *ngIf="offer.nbPers">
+                                                                    <i class="fa fa-users"></i>
+                                                                    <p>{{offer.nbPers}} </p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td></td>
+                                                                <td *ngIf="offer.hotelContacts.tel">
+                                                                    <i class="fa fa-phone"></i>
+                                                                    <p>{{offer.hotelContacts.tel}} </p>
+                                                                </td>
+                                                                <td *ngIf="offer.hotelContacts.email">
+                                                                    <i class="fa fa-at"></i>
+                                                                    <p>{{offer.hotelContacts.email}} </p>
+                                                                </td>
+
+                                                                <td *ngIf="offer.hotelContacts.url">
+                                                                    <i class="fa fa-link"></i>
+                                                                    <p>{{offer.hotelContacts.url}}</p>
+                                                                </td>
+                                                            </tr>
+                                                        </table>
+                                                    </div>
+                                                    <p-footer>
+
+                                                        <button (click)="unsubscribe_to_publication(offer)"
+                                                            [class.btn-pulse]="submitted" class="btn btn-danger btn-round">
+                                                            <i class="fa fa-remove"></i>
+                                                        </button>
+                                                    </p-footer>
+                                                </p-card>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </ng-template>
+                        </ngb-tab>
+                        <ngb-tab title="Chat">
+                            <ng-template ngbTabContent>
+                                <app-chat></app-chat>
+                            </ng-template>
+                        </ngb-tab>
+                    </ngb-tabset>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<p-dialog header="Edit profile" [(visible)]="display" [modal]="true" [responsive]="true" [width]="350" [minWidth]="200"
+    [minY]="70" [maximizable]="true" [baseZIndex]="10000">
+    <div class="row  justify-content-center">
+        <div class="form-group">
+            <input style="display: none" type="file" accept="image/*" (change)="onFileChanged($event)" #fileInput>
+            <button (click)="fileInput.click()" class="btn btn-outline-default btn-round">Select Picture</button>
+            <button (click)="onUpload()" class="btn btn-outline-default btn-round">Upload!</button>
+        </div>
+    </div>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="register-form">
+        <div class="form-group">
+            <label>Firstname</label>
+            <input type="text" value="{{user.firstname}}" formControlName="firstname" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.firstname.errors }" />
+            <div *ngIf="submitted && f.firstname.errors" class="invalid-feedback">
+                <div *ngIf="f.firstname.errors.required">firstname is required</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Lastname</label>
+            <input type="text" formControlName="lastname" value="{{user.lastname}}" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.lastname.errors }" />
+            <div *ngIf="submitted && f.lastname.errors" class="invalid-feedback">
+                <div *ngIf="f.lastname.errors.required">lastname is required</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Email</label>
+            <input type="text" formControlName="email" value="{{user.email}}" disabled="disabled" class="form-control"
+                [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+            <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                <div *ngIf="f.email.errors.required">email is required</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Password</label>
+            <input type="password" formControlName="password" value="{{user.password}}" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+            <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                <div *ngIf="f.password.errors.required">Password is required</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Reapeat Password</label>
+            <input type="password" formControlName="rePass" value="user.password" id="input-re-password" class="form-control"
+                [ngClass]="{ 'is-invalid': submitted && f.rePass.errors }" />
+            <div *ngIf="submitted && f.rePass.errors" class="invalid-feedback">
+                <div *ngIf="f.rePass.errors.required">Reapeat Password is required</div>
+            </div>
+        </div>
+        <p-footer>
+            <div class="form-group">
+                <button [disabled]="loading" class="btn btn-danger btn-block btn-round">Register</button>
+            </div>
+        </p-footer>
+    </form>
+
+</p-dialog>

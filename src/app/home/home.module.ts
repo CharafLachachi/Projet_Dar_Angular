@@ -13,10 +13,11 @@ import { NbCardModule } from "@nebular/theme";
 
 import { ComponentsModule } from '../components/components.module';
 import { PublicationComponent } from "../publication/publication.component";
-
+import {CommentComponent } from "../comment/comment.component";
 import { MessageService } from '../message.service';
 import { HttpErrorHandler, HandleError } from '../http-error-handler.service';
 import { DataService } from "../data.service";
+import { from } from 'rxjs';
 @NgModule({
     imports: [
         CommonModule,
@@ -29,7 +30,7 @@ import { DataService } from "../data.service";
         CardModule,
         NbCardModule
     ],
-    declarations: [ HomeComponent, PublicationComponent],
+    declarations: [ HomeComponent, PublicationComponent, CommentComponent],
     exports:[ HomeComponent ],
     providers: [MessageService,DataService,HttpErrorHandler]
 })

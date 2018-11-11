@@ -1,0 +1,33 @@
+<div  *ngFor="let comment of comments">
+<div class="card">
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-2">
+        <img src="https://image.ibb.co/jw55Ex/def_face.jpg" class="img img-rounded img-fluid" />
+        <p class="text-secondary text-center">{{comment.comment_created_date}}</p>
+        <p class="text-secondary text-center">{{newComment.comment_user_name}}</p>
+      </div>
+      <div class="col-md-10">
+        <div class="clearfix"></div>
+        <p>{{comment.comment_text}}</p>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="card">
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-2">
+        <img src="https://image.ibb.co/jw55Ex/def_face.jpg" class="img img-rounded img-fluid" />
+        <!-- <p class="text-secondary text-center">{{newComment.comment_created_date}}</p> -->
+        <p class="text-secondary text-center">{{newComment.comment_user_name}}</p>
+      </div>
+      <div class="col-md-10">
+        <div class="clearfix"></div>
+        <textarea class="form-control" [(ngModel)]="newComment.comment_text" (keyup.enter)="sendComment()">{{newComment.comment_user_id}}</textarea>
+      </div>
+    </div>
+  </div>
+</div>

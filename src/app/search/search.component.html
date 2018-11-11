@@ -38,7 +38,7 @@
 
                                     <div class="ui-g-12 ui-md-3">
                                         <div class="ui-inputgroup">
-                                            <span class="ui-inputgroup-addon"><i class="fa-location-arrow"></i></span>
+                                            <span class="ui-inputgroup-addon"><i class="fa fa-location-arrow"></i></span>
                                             <input pInputText [(ngModel)]="radius" type="number" min="0" id="radius"
                                                 name="radius" placeholder="Radius Km">
                                         </div>
@@ -62,6 +62,11 @@
                                         class="fa fa-search"></i>
                                     Search</button>
 
+                                    <!-- <button (click)="getRandomPicture()">
+                                        take picture
+                                    </button>
+                                    <img [src]="getRandomPicture() | async" alt=""> -->
+
                             </div>
                         </div>
 
@@ -81,7 +86,9 @@
                                             <div style="margin-bottom: 10px;">
                                                 <p-card header="Advanced Card" subheader="Subheader" styleClass="ui-card-shadow">
                                                     <p-header>
-                                                        <img src="Card" src="assets/img/uriel-soberanes.jpg" style="width: 100%"  class="img-no-padding img-responsive">
+                                                        <span>{{offer.hotelName}}</span>
+                                                        <img src="Card" src="{{offer.picture}}" style="width: 100%"
+                                                            class="img-no-padding img-responsive">
                                                     </p-header>
                                                     <div class="text-center">
                                                         <table class="table table-responsive text-center">
@@ -96,14 +103,14 @@
                                                                                 <div class="date">
                                                                                     <span>{{offer.chekInDate}}</span>
                                                                                 </div>
-                                                                                <div class="daily-forecast">
+                                                                                <div class="daily-forecast" *ngIf="offer.weather">
                                                                                     <div class="info">
                                                                                         <div class="temperature">
                                                                                             <span>{{offer.weather.temp}}</span>
                                                                                         </div>
                                                                                         <div>
-                                                                                            <img width="50%" height="50%"
-                                                                                                src="http://openweathermap.org/img/w/{{offer.weather.icon}}.png"
+                                                                                            <img width="100%" height="100%"
+                                                                                                src="https://openweathermap.org/img/w/{{offer.weather.icon}}.png"
                                                                                                 class="img-thumbnail">
                                                                                         </div>
                                                                                     </div>
@@ -113,8 +120,8 @@
                                                                     </div>
                                                                 </td>
                                                                 <td>
-                                                                    <i class="fa fa-usd"></i>
-                                                                    <p> <b>{{offer.roomPrice}}</b></p>
+                                                                    <i class="fa fa-money"></i>
+                                                                    <p> <b>{{offer.roomPrice}}</b><b *ngIf="offer.currency" > {{offer.currency}}</b></p>
                                                                 </td>
                                                                 <td>
                                                                     <i class="fa fa-map-marker"></i>
@@ -148,9 +155,9 @@
                                                         </table>
                                                     </div>
                                                     <p-footer>
-                                                            <button type="submit" [class.btn-pulse]="submitted" class="btn btn-danger btn-round">
-                                                                    <i class="fa fa-share"></i> Share Your Travel
-                                                                </button>
+                                                        <button type="submit" [class.btn-pulse]="submitted" class="btn btn-danger btn-round">
+                                                            <i class="fa fa-share"></i> Share Your Travel
+                                                        </button>
                                                     </p-footer>
                                                 </p-card>
                                             </div>
@@ -162,11 +169,9 @@
                     </ngb-tabset>
                 </div>
             </div>
-
         </div>
     </div>
-</div>
-<!-- <div class="row text-center" *ngFor="let offer of offers">
+    <!-- <div class="row text-center" *ngFor="let offer of offers">
 <form class="form-inline" (ngSubmit)="onSubmit(offer)" #form="ngForm" aria-labelledby="title">
     <nb-card class=" col-sm-12 col-md-12 col-lg-12 text-center">
         <nb-card-header> <i class="fas fa-hotel"></i> {{offer.hotelName}}</nb-card-header>

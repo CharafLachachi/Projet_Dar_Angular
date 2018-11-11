@@ -10,7 +10,7 @@ import { NbDateService } from '@nebular/theme';
 import { DataService } from "../data.service";
 import { FormGroup, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
-
+import {CommentComponent  } from "../comment/comment.component";
 
 
 const httpOptions = {
@@ -95,8 +95,8 @@ export class SearchComponent implements OnInit {
       "nbPers": this.nbpers,
       "radius": this.radius,
       "cities": this.user.cities,
-      "chekInDate": this.date.start,
-      "checkOutDate": this.date.end,
+      "chekInDate": this.rangeDates[0],
+      "checkOutDate": this.rangeDates[1],
     }).subscribe(res => {
       this.offers = res; console.log(this.offers[0]);
     },
@@ -147,5 +147,15 @@ export class SearchComponent implements OnInit {
     console.log(this.userId);
     console.log(this.date.start);
     this.d = new Date(this.date.start);
+  }
+
+  public getRandomPicture(){
+   
+    this.searchService.getRandomPicture().subscribe(
+      res => {  
+        console.log(res['results'][0]['urls']['small']);
+        return res['results'][0]['urls']['small'];
+      }
+    )
   }
 }

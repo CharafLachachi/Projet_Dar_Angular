@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse  } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse,HttpParams  } from '@angular/common/http';
 import { ISearchModel } from "../_models/ISearchModel";
 import {throwError as observableThrowError,  Observable } from 'rxjs';
 import { tap, catchError } from 'rxjs/operators';
@@ -13,8 +13,9 @@ const httpOptions = {
 };
 @Injectable()
 export class SearchService   {
-  private   searchUrl :  string =  "https://rocky-ridge-86838.herokuapp.com/search";
-  private   sharePubUrl :  string =  "https://rocky-ridge-86838.herokuapp.com/sharePublication";
+  private   searchUrl :  string =  "http://localhost:8080/DAR_PROJECT/search";
+  private   sharePubUrl :  string =  "http://localhost:8080/DAR_PROJECT/sharePublication";
+  private splashApiUrl : string = "https://api.unsplash.com/search/photos"
   private handleError: HandleError;
 
   constructor(private http: HttpClient, httpErrorHandler: HttpErrorHandler) { 
@@ -33,6 +34,11 @@ export class SearchService   {
      .pipe(
       catchError(this.handleError('sharePublication', []))
     );
+  }
+
+  getRandomPicture(): Observable<string>{
+    let params = new HttpParams().set("count", "1").set("client_id","d0362b01cac6c3d3a77008660ab5c15341cd84d3d3428dd223c1bc29091ed6c9").set("query","wonderlust");
+    return this.http.get<string>(this.splashApiUrl,{"params" : params });
   }
  
 }

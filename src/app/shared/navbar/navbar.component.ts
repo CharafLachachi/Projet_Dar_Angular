@@ -23,7 +23,7 @@ export class NavbarComponent implements OnInit {
     ngOnInit() {
         const navbar: HTMLElement = this.element.nativeElement;
         this.toggleButton = navbar.getElementsByClassName('navbar-toggler')[0];
-        this.register();
+     //   this.register();
     }
     sidebarOpen() {
         const toggleButton = this.toggleButton;
@@ -75,8 +75,8 @@ export class NavbarComponent implements OnInit {
     // }
 
     isLogged(){
-        const user = localStorage.getItem("currentUser");
-        if(user){
+         this.user = JSON.parse(localStorage.getItem("currentUser"));
+        if(this.user){
             return true;
         }
         return false;
@@ -92,13 +92,13 @@ export class NavbarComponent implements OnInit {
         }
     }
 
-     register() {
-        this.user = JSON.parse(localStorage.getItem("currentUser"));
-        this.initialService.getAvatarInitials(this.user.firstname,this.user.lastname).
-        subscribe(
-          res => {
-              console.log(res)
-            this.imageToShow = res;
-          });
-    }
+    //  register() {
+    //     this.user = JSON.parse(localStorage.getItem("currentUser"));
+    //     this.initialService.getAvatarInitials(this.user.firstname,this.user.lastname).
+    //     subscribe(
+    //       res => {
+    //           console.log(res)
+    //         this.imageToShow = res;
+    //       });
+    // }
 }

@@ -12,6 +12,8 @@ import { LoginComponent } from './login';
 import { AuthGuard } from './_guards';
 import { NbAuthComponent } from '@nebular/auth';
 import { SearchComponent } from './search/search.component';
+import { ShowProfileComponent } from './show-profile/show-profile.component';
+import { ChatComponent } from './chat/chat.component';
 
 
 const routes: Routes =[
@@ -24,6 +26,9 @@ const routes: Routes =[
      path: 'home', 
      canActivate: [AuthGuard], component: HomeComponent },
      { path: 'user-profile',   component: ProfileComponent },
+     { path: 'profile',   component: ShowProfileComponent },
+     { path: 'chat',   component: ChatComponent },
+
     // { path: 'signup',         component: SignupComponent },
     // { path: 'landing',       component: LandingComponent },
     // { path: 'nucleoicons',     component: NucleoiconsComponent },
