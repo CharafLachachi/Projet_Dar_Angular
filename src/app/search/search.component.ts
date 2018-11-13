@@ -38,6 +38,10 @@ export class SearchComponent implements OnInit {
   message: any;
   submitted = false;
 
+
+  isSpinner : boolean ;
+
+
   profileForm = new FormGroup({
     roomPrice: new FormControl(''),
     nbPers: new FormControl(''),
@@ -89,7 +93,7 @@ export class SearchComponent implements OnInit {
     // console.warn(offer.roomPrice);
   }
   public search() {
-
+    this.isSpinner = true;
     this.searchService.postSearch({
       "price": this.price,
       "nbPers": this.nbpers,
@@ -99,9 +103,11 @@ export class SearchComponent implements OnInit {
       "checkOutDate": this.rangeDates[1],
     }).subscribe(res => {
       this.offers = res; console.log(this.offers[0]);
+      this.isSpinner = false;
     },
       error => {
         console.log("Error", error);
+        this.isSpinner = false;
       });
 
 
@@ -138,6 +144,7 @@ export class SearchComponent implements OnInit {
     this.maxDate = new Date();
     this.maxDate.setMonth(nextMonth);
     this.maxDate.setFullYear(year);
+    this.isSpinner = false;
   }
   sendWeather(message: any) {
     this.message = message;

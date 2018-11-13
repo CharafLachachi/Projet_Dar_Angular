@@ -41,7 +41,8 @@ import {ScrollPanelModule} from 'primeng/scrollpanel';
 import {DialogModule} from 'primeng/dialog';
 import { NbChatModule } from "@nebular/theme/components/chat/chat.module";
 import {SelectButtonModule} from 'primeng/selectbutton';
-
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {ProgressSpinnerModule} from 'primeng/progressspinner';
 export function nbNoOpInterceptorFilter(req: HttpRequest<any>): boolean {
   return true;
 }
@@ -105,7 +106,9 @@ export function nbNoOpInterceptorFilter(req: HttpRequest<any>): boolean {
     DialogModule,
     NbChatModule.forRoot(),
     ScrollPanelModule,
-    SelectButtonModule
+    SelectButtonModule,
+    MatProgressSpinnerModule,
+    ProgressSpinnerModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
