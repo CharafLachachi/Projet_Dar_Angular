@@ -111,6 +111,7 @@ export class ShowProfileService {
   editProfile(user : User){
     
     // le code ici juste pour eviter une erreur mets ton propore code
+    // il faut aussi ramener le password du serveur
     const params = new HttpParams().set('user_id', ""+user.id);
     return this.http.post(this.GetProfilePictureUrl,null,{responseType: "blob",params}  );
   }
