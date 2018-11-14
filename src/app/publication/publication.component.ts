@@ -8,11 +8,8 @@ import {Http, Response} from '@angular/http';
 import { IPub } from "../_models/IPub";
 import { HttpHandler } from '@angular/common/http';
 import { HttpErrorHandler } from "../http-error-handler.service";
-<<<<<<< HEAD
 import { ISearchModel } from "../_models/ISearchModel";
-=======
 import { ShowProfileService } from "../show-profile/show-profile.service";
->>>>>>> 1ec078f42aad7904731e4afb6e7e6f03397feb7c
 import { faCoffee } from '@fortawesome/free-solid-svg-icons';
 import { InitialsService } from 'app/_services/initials.service';
 @Component({
@@ -29,18 +26,10 @@ export class PublicationComponent implements OnInit {
   resultsPubs : IPub[];
   faCoffee = faCoffee;
   loadCommentAllowed : boolean;
-<<<<<<< HEAD
-
-
-
   map : Map<any,any>;
 
-  constructor(private publicationService : PublicationService,private httpClient: Http, private initialService : InitialsService) { }
-=======
-  profile_img_url: Blob;
   constructor(private publicationService : PublicationService,private httpClient: Http, private initialService : InitialsService,
     private show_profile_service: ShowProfileService) { }
->>>>>>> 1ec078f42aad7904731e4afb6e7e6f03397feb7c
   ngOnInit() {
      this.map = new Map();
     // const decodedJson = JSON.parse(localStorage.getItem("auth_app_token"));
@@ -109,7 +98,7 @@ export class PublicationComponent implements OnInit {
   public loadComment(){
     this.loadCommentAllowed = !this.loadCommentAllowed;
   }
-<<<<<<< HEAD
+
 
   onSubmit(offer: IPub) {
     let json = {"userid" : this.UserId , "pubid" : offer.pub_id} ;
@@ -129,7 +118,4 @@ export class PublicationComponent implements OnInit {
   isValid(pub_id : number){
     return this.map.get(pub_id);
   }
-=======
- 
->>>>>>> 1ec078f42aad7904731e4afb6e7e6f03397feb7c
 }

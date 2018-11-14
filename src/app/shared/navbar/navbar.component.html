@@ -2,12 +2,6 @@
     <div class="container">
 
         <div class="navbar-translate">
-            <div>
-                <blockquote>
-                    <p>Le plus beau voyage est celui qu'on a pas encore fait...</p>
-                    <footer>Loick Peyron</footer>
-                </blockquote>
-            </div>
             <a class="navbar-brand" [routerLink]="['/home']" *ngIf="isLogged()">Home</a>
             <button class="navbar-toggler navbar-burger" type="button" data-toggle="collapse" data-target="#navbarToggler"
                 aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation" (click)="sidebarToggle()">
