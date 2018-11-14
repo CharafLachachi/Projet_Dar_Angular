@@ -89,7 +89,7 @@
                 Comments
               </mat-panel-title>
             </mat-expansion-panel-header>
-            <app-comment *ngIf="loadCommentAllowed" pub_id="{{offer.pub_id}}"></app-comment>
+            <app-comment *ngIf="loadCommentAllowed" pub_id="{{offer.pub_id}}" image_url="{{profile_img_url}}"></app-comment>
           </mat-expansion-panel>
         </p-footer>
       </p-card>

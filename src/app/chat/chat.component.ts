@@ -42,7 +42,7 @@ export class ChatComponent implements AfterViewInit {
     //     {label: 'Lachachi Charaf', value: 'Lachachi Charaf'},
     //     {label: 'Lachachi Salim', value: 'Lachachi Salim'},
     // ];
-      this.socket$ = new WebSocketSubject('ws://localhost:8080/DAR_PROJECT/ServerEndpointChat/'+[this.currentUser.id]);
+      this.socket$ = new WebSocketSubject('wss://rocky-ridge-86838.herokuapp.com/ServerEndpointChat/'+[this.currentUser.id]);
 
       this.socket$
           .subscribe(

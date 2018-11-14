@@ -17,8 +17,8 @@ const httpOptions = {
 })
 export class CommentService {
 
-  private getComment_url : string = "http://localhost:8080/DAR_PROJECT/CommentServlet";
-  private putComment_url : string = "http://localhost:8080/DAR_PROJECT/CommentServlet";
+  private getComment_url : string = "https://rocky-ridge-86838.herokuapp.com/CommentServlet";
+  private putComment_url : string = "https://rocky-ridge-86838.herokuapp.com/CommentServlet";
 
   private handleError: HandleError;
 

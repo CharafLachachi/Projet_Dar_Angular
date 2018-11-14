@@ -6,7 +6,7 @@ export class Comment implements IComment {
     comment_created_date?:any;
     comment_user_name? : string;
     comment_id_pub?:string;
-
+    comment_image_url? :any;
     constructor( 
         comment_user_id?: any,
         comment_user_name? : string){
