@@ -13,8 +13,8 @@ const httpOptions = {
 };
 @Injectable()
 export class SearchService   {
-  private   searchUrl :  string =  "http://localhost:8080/DAR_PROJECT/search";
-  private   sharePubUrl :  string =  "http://localhost:8080/DAR_PROJECT/sharePublication";
+  private   searchUrl :  string =  "https://rocky-ridge-86838.herokuapp.com/search";
+  private   sharePubUrl :  string =  "https://rocky-ridge-86838.herokuapp.com/sharePublication";
   private splashApiUrl : string = "https://api.unsplash.com/search/photos"
   private handleError: HandleError;
 

@@ -16,7 +16,7 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class PublicationService {
-  private   dashboardUrl :  string =  "http://localhost:8080/DAR_PROJECT/dashboard";
+  private   dashboardUrl :  string =  "https://rocky-ridge-86838.herokuapp.com/dashboard";
   private handleError: HandleError;
   constructor(private http: HttpClient, httpErrorHandler: HttpErrorHandler) { 
     this.handleError = httpErrorHandler.createHandleError('PublicationService');
