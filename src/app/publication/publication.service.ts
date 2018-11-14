@@ -17,6 +17,7 @@ const httpOptions = {
 })
 export class PublicationService {
   private   dashboardUrl :  string =  "http://localhost:8080/DAR_PROJECT/dashboard";
+  private joinUrl : string = "http://localhost:8080/DAR_PROJECT/join";
   private handleError: HandleError;
   constructor(private http: HttpClient, httpErrorHandler: HttpErrorHandler) { 
     this.handleError = httpErrorHandler.createHandleError('PublicationService');
@@ -35,8 +36,15 @@ export class PublicationService {
         .pipe(
           catchError(this.handleError('postDashboard', []))
         );
-    }
   }
+
+  joinPublication (json : any ): Observable<any[]> {
+    return this.http.post<any[]>(this.joinUrl,json,httpOptions)
+    .pipe(
+      catchError(this.handleError('postJoin', []))
+    );
+  }
+}
 
 
 

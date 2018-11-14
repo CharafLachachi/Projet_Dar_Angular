@@ -48,7 +48,7 @@
               </td>
               <td *ngIf="offer.nbPers">
                 <i class="fa fa-users"></i>
-                <p>{{offer.nbPers}} </p>
+                <p> {{offer.abonnes.length || JSON}} / {{offer.nbPers}} </p>
               </td>
             </tr>
             <tr>
@@ -67,6 +67,17 @@
                 <p>{{offer.hotelContacts.url}}</p>
               </td>
 
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+              <td>
+                <button  *ngIf="isValid(offer.pub_id)" type="submit" [class.btn-pulse]="submitted" class="btn btn-danger btn-round">
+                  <i class="fa fa-share"></i> Join This Travel
+              </button>
+              </td>
+              <td></td>
+              <td></td>
             </tr>
           </table>
 

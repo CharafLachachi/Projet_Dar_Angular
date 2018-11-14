@@ -12,4 +12,6 @@ export interface IPub {
     hotelName? : string;
     address?: IAddress;
     hotelContacts?: string[];
+    abonnes? : any[];joinPublication
+    owner? : any;
 }
