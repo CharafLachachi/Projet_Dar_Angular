@@ -8,7 +8,7 @@ import {Http, Response} from '@angular/http';
 import { IPub } from "../_models/IPub";
 import { HttpHandler } from '@angular/common/http';
 import { HttpErrorHandler } from "../http-error-handler.service";
-
+import { ShowProfileService } from "../show-profile/show-profile.service";
 import { faCoffee } from '@fortawesome/free-solid-svg-icons';
 import { InitialsService } from 'app/_services/initials.service';
 @Component({
@@ -25,7 +25,9 @@ export class PublicationComponent implements OnInit {
   resultsPubs : IPub[];
   faCoffee = faCoffee;
   loadCommentAllowed : boolean;
-  constructor(private publicationService : PublicationService,private httpClient: Http, private initialService : InitialsService) { }
+  profile_img_url: Blob;
+  constructor(private publicationService : PublicationService,private httpClient: Http, private initialService : InitialsService,
+    private show_profile_service: ShowProfileService) { }
   ngOnInit() {
     // const decodedJson = JSON.parse(localStorage.getItem("auth_app_token"));
     // const tokenValue = decodedJson.value;
@@ -40,6 +42,7 @@ export class PublicationComponent implements OnInit {
     //this.displayPublications();
     this.display();
     this.loadCommentAllowed = false;
+    
   }
 
   secondes: number;
@@ -74,5 +77,5 @@ export class PublicationComponent implements OnInit {
   public loadComment(){
     this.loadCommentAllowed = !this.loadCommentAllowed;
   }
-  
+ 
 }
