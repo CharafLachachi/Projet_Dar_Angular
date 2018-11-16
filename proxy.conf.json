@@ -1,8 +1,9 @@
 {
     "/api": {
-      "target": "https://rocky-ridge-86838.herokuapp.com/",
+      "target": "https://maps.googleapis.com/",
       "secure": false,
       "logLevel": "debug",
       "pathRewrite": {"^/api" : ""}
-    }
+    },
+    "changeOrigin": true
   }

@@ -25,9 +25,9 @@ const routes: Routes =[
      { 
      path: 'home', 
      canActivate: [AuthGuard], component: HomeComponent },
-     { path: 'user-profile',   component: ProfileComponent },
-     { path: 'profile',   component: ShowProfileComponent },
-     { path: 'chat',   component: ChatComponent },
+     { path: 'user-profile',   component: ProfileComponent , canActivate: [AuthGuard]},
+     { path: 'profile',   component: ShowProfileComponent ,  canActivate: [AuthGuard] },
+     { path: 'chat',   component: ChatComponent ,  canActivate: [AuthGuard]},
 
     // { path: 'signup',         component: SignupComponent },
     // { path: 'landing',       component: LandingComponent },

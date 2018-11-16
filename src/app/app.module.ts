@@ -19,6 +19,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NbAuthModule, NbPasswordAuthStrategy, NbAuthJWTToken } from '@nebular/auth';
 import { ReactiveFormsModule }    from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientJsonpModule } from '@angular/common/http';
+
 import { LocationStrategy, HashLocationStrategy } from "@angular/common";
 // used to create fake backend
 import { fakeBackendProvider } from './_helpers';
@@ -27,7 +29,7 @@ import { LoginComponent } from './login';
 import { TagInputModule } from 'ngx-chips';
 import { BrowserAnimationsModule  } from "@angular/platform-browser/animations";
 import { HomeModule } from './home/home.module';
-import { HttpModule } from '@angular/http';
+import { HttpModule, JsonpModule, Jsonp } from '@angular/http';
 import { SearchComponent } from '../app/search/search.component';
 import { NbDatepickerModule } from "@nebular/theme/components/datepicker/datepicker.module";
 import {CalendarModule} from 'primeng/calendar';
@@ -43,6 +45,7 @@ import { NbChatModule } from "@nebular/theme/components/chat/chat.module";
 import {SelectButtonModule} from 'primeng/selectbutton';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {ProgressSpinnerModule} from 'primeng/progressspinner';
+import { AgmCoreModule } from '@agm/core';
 export function nbNoOpInterceptorFilter(req: HttpRequest<any>): boolean {
   return true;
 }
@@ -70,6 +73,7 @@ export function nbNoOpInterceptorFilter(req: HttpRequest<any>): boolean {
     HomeModule,
     HttpModule,
     HttpClientModule,
+    HttpClientJsonpModule,
     ReactiveFormsModule,
     FontAwesomeModule,
     NbDatepickerModule.forRoot(),
@@ -108,8 +112,13 @@ export function nbNoOpInterceptorFilter(req: HttpRequest<any>): boolean {
     ScrollPanelModule,
     SelectButtonModule,
     MatProgressSpinnerModule,
-    ProgressSpinnerModule
-  ],
+    ProgressSpinnerModule,
+    JsonpModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyBSnGKpO7hUSjsXgxF6ikkweAuNPNcAj-8',
+      libraries: ["places"]
+})
+    ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
         { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },

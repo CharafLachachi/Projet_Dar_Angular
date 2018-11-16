@@ -3,9 +3,11 @@
   <div class="card-body">
     <div class="row">
       <div class="col-md-2">
-        <img src="../../assets/img/faces/ayo-ogunseinde-2.jpg" class="img img-rounded img-fluid" />
+          <ngx-avatar name="{{comment.comment_user_name}}" [round]="true" 
+          >
+     </ngx-avatar>
         <p class="text-secondary text-center">{{comment.comment_created_date}}</p>
-        <p class="text-secondary text-center">{{newComment.comment_user_name}}</p>
+        <p class="text-secondary text-center">{{comment.comment_user_name}}</p>
       </div>
       <div class="col-md-10">
         <div class="clearfix"></div>
@@ -20,7 +22,10 @@
   <div class="card-body">
     <div class="row">
       <div class="col-md-2">
-        <img src="../../assets/img/faces/joe-gardner-2.jpg" class="img img-rounded img-fluid" />
+          <ngx-avatar name="{{newComment.comment_user_name}}" [round]="true" 
+           >
+      </ngx-avatar>
+        <!-- <img src="../../assets/img/faces/joe-gardner-2.jpg"  /> -->
         <!-- <p class="text-secondary text-center">{{newComment.comment_created_date}}</p> -->
         <p class="text-secondary text-center">{{newComment.comment_user_name}}</p>
       </div>

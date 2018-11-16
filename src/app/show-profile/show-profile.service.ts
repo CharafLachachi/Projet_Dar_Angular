@@ -18,11 +18,12 @@ const httpOptions = {
 })
 export class ShowProfileService {
     
-  private   ProfileUrl :  string =  "https://rocky-ridge-86838.herokuapp.com/ShowProfile";
-  private DeletePublicationUrl : string ="https://rocky-ridge-86838.herokuapp.com/DeletePublication"
-  private UploadProfilePictureUrl : string ="https://rocky-ridge-86838.herokuapp.com/UploadProfilePicture"
-  private GetProfilePictureUrl : string ="https://rocky-ridge-86838.herokuapp.com/GetProfilePicture"
-  private UnsubscribeToPublicationUrl : string = "https://rocky-ridge-86838.herokuapp.com/UnsubscribeToPublication"
+  private   ProfileUrl :  string =  "http://localhost:8080/DAR_PROJECT/ShowProfile";
+  private DeletePublicationUrl : string ="http://localhost:8080/DAR_PROJECT/DeletePublication"
+  private UploadProfilePictureUrl : string ="http://localhost:8080/DAR_PROJECT/UploadProfilePicture"
+  private GetProfilePictureUrl : string ="http://localhost:8080/DAR_PROJECT/GetProfilePicture"
+  private UnsubscribeToPublicationUrl : string = "http://localhost:8080/DAR_PROJECT/UnsubscribeToPublication"
+  private UpdateProfileUrl : string = "http://localhost:8080/DAR_PROJECT/UpdateProfileInfos"
   private handleError: HandleError;
   
     
@@ -108,12 +109,16 @@ export class ShowProfileService {
       
   }
 
-  editProfile(user : User){
+  editProfile(user : User) : Observable<any> {
     
     // le code ici juste pour eviter une erreur mets ton propore code
     // il faut aussi ramener le password du serveur
-    const params = new HttpParams().set('user_id', ""+user.id);
-    return this.http.post(this.GetProfilePictureUrl,null,{responseType: "blob",params}  );
+  
+    return this.http.post<any>(
+      this.UpdateProfileUrl,
+      { "user_id" : user.id , "firstname" : user.firstname , "lastname" : user.lastname, "username" : user.username , 
+      "password" : user.password , "email" : user.email , "cities" : user.cities[0] }  
+      );
   }
   
 

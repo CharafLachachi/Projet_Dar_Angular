@@ -8,6 +8,9 @@ import { HttpErrorHandler } from '../http-error-handler.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
+import { map} from 'rxjs/operators';
+import {Observable, of} from 'rxjs';
+import {Http, Response, Headers} from '@angular/http';
 
 @Component({
   selector: 'ngx-show-profile',
@@ -36,8 +39,10 @@ export class ShowProfileComponent implements OnInit {
   private ProfilePicture: File;
   private selectedFile: File;
   private image_url: any;
+  items = [];
+
   constructor(private router: Router, private show_profile_service: ShowProfileService,
-    private sanitizer: DomSanitizer, private formBuilder: FormBuilder,        private route: ActivatedRoute
+    private sanitizer: DomSanitizer, private formBuilder: FormBuilder, private route: ActivatedRoute, private http: Http
 
     ) { }
 
@@ -50,13 +55,22 @@ export class ShowProfileComponent implements OnInit {
     this.get_profile_picture();
     console.log("show profile : about to get publications");
     this.get_publications();
-
+  
+    let a: String[] = ["empty"];
+    //console.log("here 1"+ (this.user.cities == a));
+    if( ! ( this.user.cities  == a ) )
+    for(let s of this.user.cities.toString().split("/") ){
+      this.items.push(s);   
+    }
+    console.log("cities :"+this.user.cities.length); 
+   
     this.loginForm = this.formBuilder.group({
       email: ['', Validators.required],
       password: ['', Validators.required],
       firstname: ['', Validators.required],
       lastname: ['', Validators.required],
-      rePass: ['', Validators.required]
+      rePass: ['', Validators.required],
+      items: ['', Validators.nullValidator],
   });
 
   this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
@@ -236,24 +250,46 @@ get f() { return this.loginForm.controls; }
 
 onSubmit() {
    this.submitted = true;
-
+   console.log("about to submit");
    // stop here if form is invalid
    if (this.loginForm.invalid) {
        return;
    }
+   console.log("valid form"); 
+   var user : User = new User(); 
    this.loading = true;
-   this.user.firstname = this.f.firstname.value;
-   this.user.lastname = this.f.lastname.value;
-   this.user.email = this.f.email.value;
-   this.user.password = this.f.password.value;
-   this.user.username = this.f.email.value;
+   user.id = this.user.id; 
+   user.firstname = this.f.firstname.value;
+   user.lastname = this.f.lastname.value;
+   user.email = this.f.email.value;
+   user.password = this.f.password.value;
+   user.username = this.f.email.value;
+   
+   var s : String = "empty" ;
+   var i : number = 0  ;  
+   
+   for(let ss of this.items){
+    if(i==0) s = ""; 
+    s+= ss ; 
+    if(i < this.items.length -1 )
+      s+="/"; 
+      i++; 
+   }
+   
+   user.cities = [s]; 
 
-   this.show_profile_service.editProfile(this.user)
+   this.show_profile_service.editProfile(user)
    .pipe(first())
    .subscribe(
        data => {
-           console.log(data)
-           this.router.navigate([this.returnUrl]);
+          
+                const helper = new JwtHelperService();
+                const decodedToken = helper.decodeToken(data.token);
+                console.log("token" + decodedToken);
+                this.user = decodedToken;
+                // store user details and jwt token in local storage to keep user logged in between page refreshes
+                localStorage.setItem('currentUser', JSON.stringify(this.user));
+
        },
        error => {
            this.error = error;
@@ -261,6 +297,34 @@ onSubmit() {
        });
    this.loading = true;
 }
+
+ // Auto complete for google place 
+       public requestAutocompleteItems = (text: string): Observable<Response> => {
+
+    const url = `https://maps.googleapis.com/maps/api/place/autocomplete/json?input=${text}&types=(cities)&language=fr_FR&key=AIzaSyBSnGKpO7hUSjsXgxF6ikkweAuNPNcAj-8`;
+    return this.http
+        .get(url)
+        .pipe(map(data => data.json().predictions.map(
+          item => item.description 
+          )));
+  };
+
+  public onAddItem(item){
+    
+    this.items.push(item.display)
+   // console.log(this.items.length);
+    this.user.cities = this.items;
+    console.log(this.user.cities);
+
+    
+  }
+  public onRemoveItem(item){
+    this.items.splice(this.items.indexOf(item,0));
+   // console.log(this.items.length);
+    this.user.cities = this.items;
+    console.log(this.user.cities);
+
+  }
 
 
 }

@@ -1,9 +1,12 @@
 <div class="text-center d-flex justify-content-center" *ngFor="let offer of resultsPubs">
+    <p-progressSpinner *ngIf="isSpinner"></p-progressSpinner>
+
   <form (ngSubmit)="onSubmit(offer)" *ngIf="offer" #form="ngForm">
 
     <div class=" " style="margin-bottom: 10px;">
       <p-card header="Advanced Card" subheader="Subheader" styleClass="ui-card-shadow">
         <p-header>
+          <p class="justify-content-left"><b>{{offer.ownername}}</b></p>
           <img src="Card" src="{{offer.picture}}" class="card-img-top">
         </p-header>
         <div class="text-center">
@@ -47,9 +50,9 @@
                 <p>{{offer.chekInDate}} - {{offer.checkOutDate}}</p>
               </td>
               <td *ngIf="offer.nbPers">
-                <i class="fa fa-users"></i>
-                <p>{{offer.nbPers}} </p>
-              </td>
+                  <i class="fa fa-users"></i>
+                  <p> {{offer.abonnes.length || JSON}} / {{offer.nbPers}} </p>
+                </td>
             </tr>
             <tr>
               <td></td>
@@ -68,6 +71,17 @@
               </td>
 
             </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td>
+                  <button  *ngIf="isValid(offer.pub_id)" type="submit" [class.btn-pulse]="submitted" class="btn btn-danger btn-round">
+                    <i class="fa fa-share"></i> Join This Travel
+                </button>
+                </td>
+                <td></td>
+                <td></td>
+              </tr>
           </table>
 
         </div>

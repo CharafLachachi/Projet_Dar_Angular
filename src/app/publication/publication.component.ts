@@ -8,6 +8,7 @@ import {Http, Response} from '@angular/http';
 import { IPub } from "../_models/IPub";
 import { HttpHandler } from '@angular/common/http';
 import { HttpErrorHandler } from "../http-error-handler.service";
+import { ISearchModel } from "../_models/ISearchModel";
 import { ShowProfileService } from "../show-profile/show-profile.service";
 import { faCoffee } from '@fortawesome/free-solid-svg-icons';
 import { InitialsService } from 'app/_services/initials.service';
@@ -25,10 +26,15 @@ export class PublicationComponent implements OnInit {
   resultsPubs : IPub[];
   faCoffee = faCoffee;
   loadCommentAllowed : boolean;
-  profile_img_url: Blob;
+  map : Map<any,any>;
+  isSpinner: boolean;
+
+
   constructor(private publicationService : PublicationService,private httpClient: Http, private initialService : InitialsService,
     private show_profile_service: ShowProfileService) { }
   ngOnInit() {
+     this.map = new Map();
+     this.isSpinner = false;
     // const decodedJson = JSON.parse(localStorage.getItem("auth_app_token"));
     // const tokenValue = decodedJson.value;
 
@@ -40,7 +46,11 @@ export class PublicationComponent implements OnInit {
     this.user = JSON.parse(localStorage.getItem("currentUser"));
     this.UserId = this.user.id;
     //this.displayPublications();
+    
     this.display();
+   
+    
+
     this.loadCommentAllowed = false;
     
   }
@@ -65,17 +75,62 @@ export class PublicationComponent implements OnInit {
   //recuperer les publications avec Http
   display(){
     console.log('scope is ');
+    this.isSpinner = true;
     this.publicationService.postPub({userid : this.UserId}).subscribe(res => {
       this.resultsPubs = res; 
+      //console.log("yaaaaay"+this.resultsPubs[1].owner);
+     // console.log("equal"+this.resultsPubs[0].owner+" "+this.UserId);
+     
+      for (let i in this.resultsPubs) {
+        for(let j in this.resultsPubs[i].abonnes){
+          if(this.resultsPubs[i].abonnes[j]['abonne_id'] === this.resultsPubs[i].owner){
+            this.resultsPubs[i].ownername = this.resultsPubs[i].abonnes[j]['firstname'];
+            console.log("yay "+this.resultsPubs[i].abonnes[j]['firstname']);
+            
+          }
+        }
+        if( this.resultsPubs[i].abonnes.length >= this.resultsPubs[i].nbPers 
+          || this.resultsPubs[i].owner === this.UserId){
+            //this.resultsPubs[i].ownername = this.resultsPubs[i].abonnes
+
+            //désactivé
+          this.map.set(this.resultsPubs[i].pub_id, false);
+        }else{
+          //activé
+          this.map.set(this.resultsPubs[i].pub_id, true);
+        }
+      }
+      this.isSpinner = false;
+
+        console.log("yaaaaay"+this.map.get(2)); 
     },
     error =>{
     console.log("Error", error);
+    this.isSpinner = false;
     });
-    
   }
 
   public loadComment(){
     this.loadCommentAllowed = !this.loadCommentAllowed;
   }
- 
+
+
+  onSubmit(offer: IPub) {
+    let json = {"userid" : this.UserId , "pubid" : offer.pub_id} ;
+    this.publicationService.joinPublication(json).
+    subscribe(
+      res => {
+        console.log("Success", "success");
+        offer.abonnes = res;
+      },
+      error => {
+        console.log("Error", error);
+      }
+    );
+    console.log(this.resultsPubs[0].abonnes.length);
+  }
+
+  isValid(pub_id : number){
+    return this.map.get(pub_id);
+  }
 }

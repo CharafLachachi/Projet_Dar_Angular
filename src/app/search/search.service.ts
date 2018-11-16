@@ -5,7 +5,6 @@ import {throwError as observableThrowError,  Observable } from 'rxjs';
 import { tap, catchError } from 'rxjs/operators';
 import { HttpHeaders } from '@angular/common/http';
 import { HttpErrorHandler, HandleError } from '../http-error-handler.service';
-
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type':  'application/json',
@@ -13,12 +12,13 @@ const httpOptions = {
 };
 @Injectable()
 export class SearchService   {
-  private   searchUrl :  string =  "https://rocky-ridge-86838.herokuapp.com/search";
-  private   sharePubUrl :  string =  "https://rocky-ridge-86838.herokuapp.com/sharePublication";
+  private   searchUrl :  string =  "http://localhost:8080/DAR_PROJECT/search";
+  private   sharePubUrl :  string =  "http://localhost:8080/DAR_PROJECT/sharePublication";
   private splashApiUrl : string = "https://api.unsplash.com/search/photos"
   private handleError: HandleError;
 
-  constructor(private http: HttpClient, httpErrorHandler: HttpErrorHandler) { 
+  constructor(private http: HttpClient, httpErrorHandler: HttpErrorHandler)
+  { 
     this.handleError = httpErrorHandler.createHandleError('SearchService');
   }
 

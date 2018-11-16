@@ -10,13 +10,15 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import {MatIconModule} from '@angular/material/icon';
 import {CardModule} from 'primeng/card';
 import { NbCardModule } from "@nebular/theme";
-
+import { AvatarModule } from "ngx-avatar";
 import { ComponentsModule } from '../components/components.module';
 import { PublicationComponent } from "../publication/publication.component";
 import {CommentComponent } from "../comment/comment.component";
 import { MessageService } from '../message.service';
 import { HttpErrorHandler, HandleError } from '../http-error-handler.service';
 import { DataService } from "../data.service";
+import {ProgressSpinnerModule} from 'primeng/progressspinner';
+
 import { from } from 'rxjs';
 @NgModule({
     imports: [
@@ -28,7 +30,9 @@ import { from } from 'rxjs';
         MatExpansionModule,
         MatIconModule,
         CardModule,
-        NbCardModule
+        NbCardModule,
+        AvatarModule,
+        ProgressSpinnerModule
     ],
     declarations: [ HomeComponent, PublicationComponent, CommentComponent],
     exports:[ HomeComponent ],
