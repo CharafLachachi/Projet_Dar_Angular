@@ -71,19 +71,13 @@
               </td>
 
             </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td>
-                  <button  *ngIf="isValid(offer.pub_id)" type="submit" [class.btn-pulse]="submitted" class="btn btn-danger btn-round">
-                    <i class="fa fa-share"></i> Join This Travel
-                </button>
-                </td>
-                <td></td>
-                <td></td>
-              </tr>
+           
           </table>
-
+         
+                <button  *ngIf="isValid(offer.pub_id)" type="submit" [class.btn-pulse]="submitted" class="btn btn-danger btn-round">
+                  <i class="fa fa-share"></i> Join This Travel
+              </button>
+            
         </div>
         <p-footer>
           <mat-expansion-panel (opened)="loadComment()"  (closed)="loadComment()">
