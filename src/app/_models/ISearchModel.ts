@@ -15,5 +15,6 @@ export interface ISearchModel {
                  hotelContacts?: IContact;
                  idUser? : any;
                  currency? : string;
+                 pub_id? :string;
                  }
   
