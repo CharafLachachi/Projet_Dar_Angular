@@ -29,8 +29,10 @@ et interagir avec eux sur une seule et même plateforme.
 
 ## Architecture globale de la plateforme 
  <img src="https://user-images.githubusercontent.com/13594921/48972682-1ec31d00-f030-11e8-9da2-6604cee3ad77.png" />
+
 ## Template 
 [Paper Kit 2 Angular - Free Bootstrap 4 UI Kit](https://demos.creative-tim.com/paper-kit-2-angular/) 
+
 ## Quelques captures d'ecrans
 <img src ="https://user-images.githubusercontent.com/13594921/48972820-f25cd000-f032-11e8-9b63-0dc1210a08fb.png" />
 
