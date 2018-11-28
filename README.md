@@ -1,4 +1,4 @@
-# Partie Back-end d'une plateforme de co-voyage intitulée "Voyageons-Ensemble"
+# Partie Front-end d'une plateforme de co-voyage intitulée "Voyageons-Ensemble"
 
 ## Présentation de la plateforme 
 Le plus beau voyage est celui qu’on a pas encore fait" Loick Peyron. Vous préparez un voyage et vous voulez partager cette expérience avec une ou plusieurs autres personnes mordues de voyages ? Rejoindre "VoyageonsEnsemble" c’est organiser des voyages, rejoindre les voyages d’autres voyageurs
