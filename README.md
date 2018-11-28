@@ -47,8 +47,8 @@ et interagir avec eux sur une seule et même plateforme.
 <li>Angular 6</li> 
 </ul>
 
-## Auteur 
-[Charaf Lachachi](https://github.com/CharafLachachi)</b>
+## Auteurs
+[Charaf Lachachi](https://github.com/CharafLachachi)</br>
 [Thamazgha Smail](https://github.com/ThamazghaSMAIL)
 
 
